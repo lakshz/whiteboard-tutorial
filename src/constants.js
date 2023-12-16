@@ -1,6 +1,7 @@
 export const TOOL_ITEMS = {
   LINE: "LINE",
   RECTANGLE: "RECTANGLE",
+  CIRCLE: "CIRCLE",
 };
 
 export const TOOL_ACTION_TYPES = {
