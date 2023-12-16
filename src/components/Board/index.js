@@ -1,27 +1,38 @@
-import { useEffect, useRef } from "react";
+import { useContext, useEffect, useRef } from "react";
 import rough from "roughjs";
+import boardContext from "../../store/board-context";
 
 function Board() {
   const canvasRef = useRef();
+  const { elements, boardMouseDownHandler } = useContext(boardContext);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-
-    const roughCanvas = rough.canvas(canvas);
-    const generator = roughCanvas.generator;
-
-    let rect1 = generator.rectangle(10, 10, 100, 100);
-    let rect2 = generator.rectangle(10, 120, 100, 100, {
-      fill: "red",
-      stroke: "blue",
-    });
-    roughCanvas.draw(rect1);
-    roughCanvas.draw(rect2);
   }, []);
 
-  return <canvas ref={canvasRef} />;
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    const context = canvas.getContext("2d");
+    context.save();
+
+    const roughCanvas = rough.canvas(canvas);
+
+    elements.forEach((element) => {
+      roughCanvas.draw(element.roughEle);
+    });
+
+    return () => {
+      context.clearRect(0, 0, canvas.width, canvas.height);
+    };
+  }, [elements]);
+
+  const handleBoardMouseDown = (event) => {
+    boardMouseDownHandler(event);
+  };
+
+  return <canvas ref={canvasRef} onMouseDown={handleBoardMouseDown} />;
 }
 
 export default Board;
