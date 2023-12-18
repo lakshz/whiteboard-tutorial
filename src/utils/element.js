@@ -84,6 +84,10 @@ export const createRoughElement = (
   }
 };
 
+export const isPointNearElement = (element, pointX, pointY) => {
+  return false;
+};
+
 export const getSvgPathFromStroke = (stroke) => {
   if (!stroke.length) return "";
 

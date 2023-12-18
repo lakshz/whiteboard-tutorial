@@ -4,11 +4,13 @@ export const TOOL_ITEMS = {
   RECTANGLE: "RECTANGLE",
   CIRCLE: "CIRCLE",
   ARROW: "ARROW",
+  ERASER: "ERASER",
 };
 
 export const TOOL_ACTION_TYPES = {
   NONE: "NONE",
   DRAWING: "DRAWING",
+  ERASING: "ERASING",
 };
 
 export const BOARD_ACTIONS = {
@@ -16,6 +18,7 @@ export const BOARD_ACTIONS = {
   DRAW_DOWN: "DRAW_DOWN",
   DRAW_MOVE: "DRAW_MOVE",
   DRAW_UP: "DRAW_UP",
+  ERASE: "ERASE",
 };
 
 export const COLORS = {

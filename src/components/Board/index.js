@@ -3,7 +3,6 @@ import rough from "roughjs";
 import boardContext from "../../store/board-context";
 import { TOOL_ACTION_TYPES, TOOL_ITEMS } from "../../constants";
 import toolboxContext from "../../store/toolbox-context";
-import { isContentEditable } from "@testing-library/user-event/dist/utils";
 
 function Board() {
   const canvasRef = useRef();
