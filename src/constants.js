@@ -19,6 +19,7 @@ export const BOARD_ACTIONS = {
   DRAW_MOVE: "DRAW_MOVE",
   DRAW_UP: "DRAW_UP",
   ERASE: "ERASE",
+  CHANGE_ACTION_TYPE: "CHANGE_ACTION_TYPE",
 };
 
 export const COLORS = {
@@ -51,4 +52,6 @@ export const SIZE_TOOL_TYPES = [
   TOOL_ITEMS.RECTANGLE,
   TOOL_ITEMS.CIRCLE,
 ];
+
 export const ARROW_LENGTH = 20;
+export const ELEMENT_ERASE_THRESHOLD = 0.1;

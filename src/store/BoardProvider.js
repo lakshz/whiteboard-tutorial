@@ -101,7 +101,7 @@ const boardReducer = (state, action) => {
 };
 
 const initialBoardState = {
-  activeToolItem: TOOL_ITEMS.LINE,
+  activeToolItem: TOOL_ITEMS.BRUSH,
   toolActionType: TOOL_ACTION_TYPES.NONE,
   elements: [],
 };
