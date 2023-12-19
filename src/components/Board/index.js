@@ -16,6 +16,8 @@ function Board() {
     boardMouseMoveHandler,
     boardMouseUpHandler,
     textAreaBlurHandler,
+    undo,
+    redo,
   } = useContext(boardContext);
   const { toolboxState } = useContext(toolboxContext);
 
@@ -24,6 +26,22 @@ function Board() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
   }, []);
+
+  useEffect(() => {
+    function handleKeyDown(event) {
+      if (event.ctrlKey && event.key === "z") {
+        undo();
+      } else if (event.ctrlKey && event.key === "y") {
+        redo();
+      }
+    }
+
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [undo, redo]);
 
   useLayoutEffect(() => {
     const canvas = canvasRef.current;
@@ -96,9 +114,7 @@ function Board() {
             fontSize: `${elements[elements.length - 1]?.size}px`,
             color: elements[elements.length - 1]?.stroke,
           }}
-          onBlur={(event) =>
-            textAreaBlurHandler(event.target.value, toolboxState)
-          }
+          onBlur={(event) => textAreaBlurHandler(event.target.value)}
         />
       )}
       <canvas
