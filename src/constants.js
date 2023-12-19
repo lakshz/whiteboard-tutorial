@@ -23,6 +23,8 @@ export const BOARD_ACTIONS = {
   ERASE: "ERASE",
   CHANGE_ACTION_TYPE: "CHANGE_ACTION_TYPE",
   CHANGE_TEXT: "CHANGE_TEXT",
+  UNDO: "UNDO",
+  REDO: "REDO",
 };
 
 export const COLORS = {
