@@ -46,6 +46,10 @@ const initialToolboxState = {
     stroke: COLORS.BLACK,
     size: 1,
   },
+  [TOOL_ITEMS.TEXT]: {
+    stroke: COLORS.BLACK,
+    size: 32,
+  },
 };
 
 const ToolboxProvider = ({ children }) => {
