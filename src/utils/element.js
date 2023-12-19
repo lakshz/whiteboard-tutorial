@@ -89,6 +89,7 @@ export const createElement = (
 
 export const isPointNearElement = (element, pointX, pointY) => {
   const { x1, y1, x2, y2, type } = element;
+  const context = document.getElementById("canvas").getContext("2d");
   switch (type) {
     case TOOL_ITEMS.LINE:
     case TOOL_ITEMS.ARROW:
@@ -102,8 +103,33 @@ export const isPointNearElement = (element, pointX, pointY) => {
         isPointCloseToLine(x1, y2, x1, y1, pointX, pointY)
       );
     case TOOL_ITEMS.BRUSH:
-      const context = document.getElementById("canvas").getContext("2d");
       return context.isPointInPath(element.path, pointX, pointY);
+    case TOOL_ITEMS.TEXT:
+      context.font = `${element.size}px Caveat`;
+      context.fillStyle = element.stroke;
+      const textWidth = context.measureText(element.text).width;
+      const textHeight = parseInt(element.size);
+      context.restore();
+      return (
+        isPointCloseToLine(x1, y1, x1 + textWidth, y1, pointX, pointY) ||
+        isPointCloseToLine(
+          x1 + textWidth,
+          y1,
+          x1 + textWidth,
+          y1 + textHeight,
+          pointX,
+          pointY
+        ) ||
+        isPointCloseToLine(
+          x1 + textWidth,
+          y1 + textHeight,
+          x1,
+          y1 + textHeight,
+          pointX,
+          pointY
+        ) ||
+        isPointCloseToLine(x1, y1 + textHeight, x1, y1, pointX, pointY)
+      );
     default:
       throw new Error("Type not recognized");
   }
